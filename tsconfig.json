@@ -1,0 +1,8 @@
+{
+    "files": [
+        "src/js/app.ts"
+    ],
+    "compilerOptions": {
+        "esModuleInterop": true
+    }
+}

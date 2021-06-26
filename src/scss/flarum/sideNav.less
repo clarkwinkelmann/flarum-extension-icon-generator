@@ -1,0 +1,51 @@
+// Simplified copy of Flarum's common/sideNav
+// The MIT License (MIT)
+// Copyright (c) 2019-2021 Stichting Flarum (Flarum Foundation)
+// Copyright (c) 2014-2019 Toby Zerner (toby.zerner@gmail.com)
+
+.sideNav > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sideNav {
+    & .Dropdown--select {
+        display: block;
+
+        .Dropdown--expanded();
+
+        & .Dropdown-menu {
+            & > li > a {
+                padding: 8px 0 8px 30px;
+                color: @muted-color;
+
+                &:hover {
+                    background: none;
+                    color: @link-color;
+                    text-decoration: none;
+                }
+
+                & .Button-icon {
+                    float: left;
+                    margin-left: -30px;
+                    font-size: 15px;
+                }
+            }
+
+            & > li.active > a {
+                background: none;
+                color: @primary-color;
+                font-weight: bold;
+            }
+
+            & > .Dropdown-separator {
+                background: none;
+            }
+        }
+    }
+}
+
+.sideNavContainer {
+    display: flex;
+}

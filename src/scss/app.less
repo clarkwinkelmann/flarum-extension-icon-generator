@@ -1,0 +1,114 @@
+@import "~normalize.css";
+@import "~@fortawesome/fontawesome-free/less/fontawesome";
+@import "~@fortawesome/fontawesome-free/less/solid";
+@import "~@fortawesome/fontawesome-free/less/regular";
+@import "~@fortawesome/fontawesome-free/less/brands";
+@import "flarum/mixins";
+@import "flarum/variables";
+@import "flarum/AdminNav";
+@import "flarum/Button";
+@import "flarum/Dropdown";
+@import "flarum/ExtensionWidget";
+@import "flarum/FormControl";
+@import "flarum/sideNav";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    // Same as Flarum
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, Cantarell, Oxygen, Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    padding: 40px 0;
+}
+
+h3 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+footer {
+    text-align: center;
+    color: #aaa;
+    margin: 40px 0;
+
+    a {
+        color: #999;
+        text-decoration: underline;
+    }
+}
+
+.Columns {
+    @media (min-width: 700px) {
+        display: flex;
+    }
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.Column {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 10px 15px;
+
+    &:first-child {
+        // Same as Flarum's sideNav + padding
+        max-width: 240px + 30px;
+    }
+
+    &:last-child {
+        max-width: 300px;
+    }
+}
+
+.Input {
+    margin-top: 20px;
+    position: relative;
+}
+
+.Button, .FormControl {
+    padding: 10px 20px;
+    font-size: 1em;
+    height: auto;
+}
+
+.Input-Controls {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+
+    > button, > a {
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 13px 10px;
+    }
+}
+
+.Randomize {
+    .Button--color(@body-bg, @primary-color);
+    font-weight: bold;
+}
+
+.Input-Color {
+    i {
+        color: #dedede;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.Export {
+    min-height: 21em;
+    max-width: 600px;
+    margin: 0 auto;
+}
