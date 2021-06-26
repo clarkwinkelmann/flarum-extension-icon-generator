@@ -13,7 +13,7 @@ mix.webpackConfig({
 });
 
 mix
-    .setPublicPath('dist')
-    .ts('src/js/app.ts', 'dist/assets')
-    .less('src/scss/app.less', 'dist/assets')
-    .copy('src/html', 'dist');
+    .setPublicPath('docs')
+    .ts('src/js/app.ts', 'docs/assets')
+    .less('src/scss/app.less', 'docs/assets')
+    .copy('src/html', 'docs');
