@@ -10,6 +10,12 @@ const root = document.getElementById('app');
 const LOCKED_TITLE = 'Click to unlock and randomize again';
 const UNLOCKED_TITLE = 'Click to lock this value so it no longer randomizes';
 
+let enabledStatus: boolean[] = [
+    true,
+    true,
+    false,
+];
+
 class App implements m.ClassComponent {
     name: string = ''
     nameLock: boolean = false
@@ -135,27 +141,20 @@ class App implements m.ClassComponent {
                     m('h3', 'Side nav preview'),
                     m('.App-nav.sideNav', m('.ButtonGroup.Dropdown.dropdown.AdminNav.AdminNav-Main.Dropdown--select', m('ul.Dropdown-menu.dropdown-menu ', [
                         m('li.item-category-feature', m('h4.ExtensionListTitle', 'Features')),
-                        m('li.item-extension-a', m('a.ExtensionNavButton', {
+                        [0, 1, 2].map(index => m('li.item-extension-a', m('a.ExtensionNavButton', {
                             href: '#',
+                            onclick(event) {
+                                event.preventDefault(); // Don't append # to URL
+
+                                enabledStatus[index] = !enabledStatus[index];
+                            },
                         }, [
-                            m('span.ExtensionListItem-icon.ExtensionIcon'),
-                            m('span.Button-label', 'Other extension'),
-                            m('span.ExtensionListItem-Dot.enabled'),
-                        ])),
-                        m('li.item-extension-a', m('a.ExtensionNavButton', {
-                            href: '#',
-                        }, [
-                            this.icon('ExtensionListItem-icon'),
-                            m('span.Button-label', this.name),
-                            m('span.ExtensionListItem-Dot.enabled'),
-                        ])),
-                        m('li.item-extension-a', m('a.ExtensionNavButton', {
-                            href: '#',
-                        }, [
-                            m('span.ExtensionListItem-icon.ExtensionIcon'),
-                            m('span.Button-label', 'Other extension'),
-                            m('span.ExtensionListItem-Dot.disabled'),
-                        ])),
+                            index === 1 ? this.icon('ExtensionListItem-icon') : m('span.ExtensionListItem-icon.ExtensionIcon'),
+                            m('span.Button-label', index === 1 ? this.name : 'Other extension'),
+                            m('span.ExtensionListItem-Dot', {
+                                className: enabledStatus[index] ? 'enabled' : 'disabled',
+                            }),
+                        ]))),
                     ]))),
                 ]),
 
@@ -163,26 +162,21 @@ class App implements m.ClassComponent {
                     m('h3', 'Widget preview'),
                     m('.DashboardWidget.Widget.ExtensionsWidget', m('.ExtensionsWidget-list', m('.ExtensionList-Category', [
                         m('h4.ExtensionList-Label', 'Features'),
-                        m('ul.ExtensionList', [
-                            m('li.ExtensionListItem', m('a', {
-                                href: '#',
-                            }, m('.ExtensionListItem-content', [
-                                m('span.ExtensionListItem-icon.ExtensionIcon'),
-                                m('.ExtensionListItem-title', 'Other extension'),
-                            ]))),
-                            m('li.ExtensionListItem', m('a', {
-                                href: '#',
-                            }, m('.ExtensionListItem-content', [
-                                this.icon('ExtensionListItem-icon'),
-                                m('.ExtensionListItem-title', this.name),
-                            ]))),
-                            m('li.ExtensionListItem.disabled', m('a', {
-                                href: '#',
-                            }, m('.ExtensionListItem-content', [
-                                m('span.ExtensionListItem-icon.ExtensionIcon'),
-                                m('.ExtensionListItem-title', 'Other extension'),
-                            ]))),
-                        ]),
+
+                        m('ul.ExtensionList', [0, 1, 2].map(index => m('li.ExtensionListItem', {
+                            className: enabledStatus[index] ? '' : 'disabled',
+                        }, m('a', {
+                            href: '#',
+                            onclick(event) {
+                                event.preventDefault(); // Don't append # to URL
+                            },
+                        }, m('.ExtensionListItem-content', index === 1 ? [
+                            this.icon('ExtensionListItem-icon'),
+                            m('.ExtensionListItem-title', this.name),
+                        ] : [
+                            m('span.ExtensionListItem-icon.ExtensionIcon'),
+                            m('.ExtensionListItem-title', 'Other extension'),
+                        ]))))),
                     ]))),
                 ]),
 
