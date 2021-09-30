@@ -12,3 +12,13 @@ Built with:
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome)
 - [randomColor](https://github.com/davidmerfield/RandomColor)
 - [Vanilla Picker](https://github.com/Sphinxxxx/vanilla-picker)
+
+## Compilation
+
+During development:
+
+    npx mix watch
+
+Before commiting:
+
+    npx mix --production
